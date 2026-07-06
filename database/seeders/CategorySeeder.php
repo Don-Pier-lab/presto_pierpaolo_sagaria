@@ -11,12 +11,12 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             'Motori',
-            'Immobili',
             'Elettronica',
             'Arredamento',
             'Moda',
             'Sport',
             'Libri e Riviste',
+            'Fumetti',
             'Musica',
             'Film',
             'Videogame',
