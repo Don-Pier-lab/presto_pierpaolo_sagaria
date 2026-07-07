@@ -11,6 +11,11 @@
         <div class="container">
             <a class="navbar-brand" href="{{ route('homepage') }}">Presto</a>
 
+            <form action="{{ route('articles.search') }}" method="GET" class="d-flex mx-auto">
+                <input type="search" name="query" class="form-control form-control-sm" placeholder="Cerca annunci...">
+                <button type="submit" class="btn btn-sm btn-outline-light ms-2">Cerca</button>
+            </form>
+
             <div class="navbar-nav ms-auto">
                 @guest
                     <a class="nav-link" href="{{ route('login') }}">Login</a>

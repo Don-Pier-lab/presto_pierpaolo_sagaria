@@ -29,4 +29,6 @@ Route::patch('/revisor/accept/{article}', [RevisorController::class, 'accept'])-
 
 Route::patch('/revisor/reject/{article}', [RevisorController::class, 'reject'])->name('revisor.reject');
 
+Route::get('/search', [PublicController::class, 'search'])->name('articles.search');
+
 Route::get('/articles/{article}', [PublicController::class, 'articleShow'])->name('articles.show');

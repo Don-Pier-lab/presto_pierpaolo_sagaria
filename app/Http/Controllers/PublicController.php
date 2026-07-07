@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
@@ -39,5 +40,22 @@ class PublicController extends Controller
             ->paginate(6);
 
         return view('articles.by-category', compact('category', 'articles'));
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $articles = Article::where('is_accepted', true)
+            ->where(function ($q) use ($query) {
+                $q->where('title', 'like', '%' . $query . '%')
+                    ->orWhere('description', 'like', '%' . $query . '%')
+                    ->orWhereHas('category', function ($c) use ($query) {
+                        $c->where('name', 'like', '%' . $query . '%');
+                    });
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+
+        return view('articles.searched', compact('articles', 'query'));
     }
 }
