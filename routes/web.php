@@ -31,4 +31,6 @@ Route::patch('/revisor/reject/{article}', [RevisorController::class, 'reject'])-
 
 Route::get('/search', [PublicController::class, 'search'])->name('articles.search');
 
+Route::post('/set-locale/{lang}', [PublicController::class, 'setLocale'])->name('setLocale');
+
 Route::get('/articles/{article}', [PublicController::class, 'articleShow'])->name('articles.show');

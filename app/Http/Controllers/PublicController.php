@@ -58,4 +58,10 @@ class PublicController extends Controller
 
         return view('articles.searched', compact('articles', 'query'));
     }
+    public function setLocale($lang)
+    {
+        session()->put('locale', $lang);
+
+        return redirect()->back();
+    }
 }

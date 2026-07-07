@@ -1,0 +1,16 @@
+<?php
+
+return [
+    'login' => 'Login',
+    'register' => 'Sign up',
+    'logout' => 'Logout',
+    'search_placeholder' => 'Search listings...',
+    'search' => 'Search',
+    'insert_article' => 'Post a listing',
+    'latest_articles' => 'Latest listings',
+    'all_articles' => 'See all listings',
+    'welcome_title' => 'Welcome to Presto',
+    'welcome_subtitle' => 'The marketplace to buy and sell anything.',
+    'work_with_us' => 'Work with us',
+    'revisor_dashboard' => 'Revisor dashboard',
+];

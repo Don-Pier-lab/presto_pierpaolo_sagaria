@@ -1,0 +1,16 @@
+<?php
+
+return [
+    'login' => 'Accedi',
+    'register' => 'Registrati',
+    'logout' => 'Esci',
+    'search_placeholder' => 'Cerca annunci...',
+    'search' => 'Cerca',
+    'insert_article' => 'Inserisci annuncio',
+    'latest_articles' => 'Ultimi annunci',
+    'all_articles' => 'Vedi tutti gli annunci',
+    'welcome_title' => 'Benvenuto su Presto',
+    'welcome_subtitle' => 'Il portale per comprare e vendere di tutto.',
+    'work_with_us' => 'Lavora con noi',
+    'revisor_dashboard' => 'Dashboard revisore',
+];
