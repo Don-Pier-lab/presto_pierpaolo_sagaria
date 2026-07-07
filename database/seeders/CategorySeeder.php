@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
             'Arredamento',
             'Moda',
             'Sport',
-            'Libri e Riviste',
+            'Libri',
             'Fumetti',
             'Musica',
             'Film',
