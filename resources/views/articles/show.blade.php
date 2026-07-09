@@ -6,7 +6,7 @@
                     @if ($article->images->isNotEmpty())
                         @foreach ($article->images as $key => $image)
                             <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}" class="d-block w-100 rounded" alt="{{ $article->title }}">
+                               <img src="{{ $image->getUrl(300, 300) }}" class="d-block w-100 rounded" alt="{{ $article->title }}">
                             </div>
                         @endforeach
                     @else

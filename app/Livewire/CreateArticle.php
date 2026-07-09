@@ -7,6 +7,8 @@ use App\Models\Category;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Jobs\ResizeImage;
+use Illuminate\Support\Facades\File;
 
 #[Layout('components.layout')]
 class CreateArticle extends Component
@@ -60,10 +62,16 @@ class CreateArticle extends Component
 
         if (count($this->images)) {
             foreach ($this->images as $image) {
-                $article->images()->create([
-                    'path' => $image->store('images', 'public'),
+                $newFileName = "articles/{$article->id}";
+
+                $newImage = $article->images()->create([
+                    'path' => $image->store($newFileName, 'public'),
                 ]);
+
+                dispatch(new ResizeImage($newImage->path, 300, 300));
             }
+
+            File::deleteDirectory(storage_path('/app/livewire-tmp'));
         }
 
         session()->flash('success', 'Annuncio inserito con successo');
