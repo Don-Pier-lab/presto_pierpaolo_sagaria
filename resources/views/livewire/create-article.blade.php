@@ -35,7 +35,26 @@
                 </select>
                 @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
+<div class="mb-3">
+                <label for="images" class="form-label">Immagini (max 6)</label>
+                <input type="file" id="images" wire:model="temporary_images" multiple
+                    class="form-control @error('temporary_images.*') is-invalid @enderror @error('temporary_images') is-invalid @enderror">
+                @error('temporary_images.*') <div class="text-danger small">{{ $message }}</div> @enderror
+                @error('temporary_images') <div class="text-danger small">{{ $message }}</div> @enderror
+            </div>
 
+            @if (!empty($images))
+                <div class="row mb-3">
+                    <p class="mb-2">Anteprima immagini:</p>
+                    @foreach ($images as $key => $image)
+                        <div class="col-md-3 mb-2" wire:key="img-{{ $key }}">
+                            <div style="background-image: url('{{ $image->temporaryUrl() }}'); background-size: cover; background-position: center; height: 140px; border-radius: 6px;"></div>
+                            <button type="button" wire:click="removeImage({{ $key }})" class="btn btn-sm btn-danger mt-1 w-100">Rimuovi</button>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            
             <button type="submit" class="btn btn-primary">Pubblica annuncio</button>
         </form>
     </div>

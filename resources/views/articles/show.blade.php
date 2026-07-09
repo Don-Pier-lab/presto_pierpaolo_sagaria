@@ -3,15 +3,17 @@
         <div class="col-md-7">
             <div id="carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://placehold.co/600x400?text=Foto+1" class="d-block w-100 rounded" alt="Foto 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://placehold.co/600x400?text=Foto+2" class="d-block w-100 rounded" alt="Foto 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://placehold.co/600x400?text=Foto+3" class="d-block w-100 rounded" alt="Foto 3">
-                    </div>
+                    @if ($article->images->isNotEmpty())
+                        @foreach ($article->images as $key => $image)
+                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                <img src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}" class="d-block w-100 rounded" alt="{{ $article->title }}">
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="carousel-item active">
+                            <img src="https://placehold.co/600x400?text=Nessuna+foto" class="d-block w-100 rounded" alt="Nessuna foto">
+                        </div>
+                    @endif
                 </div>
 
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
