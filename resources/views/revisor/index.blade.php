@@ -14,6 +14,14 @@
                             @foreach ($article_to_check->images as $key => $image)
                                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                     <img src="{{ $image->getUrl(600, 600) }}" class="d-block w-100 rounded" alt="Immagine">
+                                    <div class="d-flex justify-content-center gap-3 mt-2">
+                                        @foreach ($image->getSemaphores() as $semaphore)
+                                            <div class="text-center">
+                                                <span class="d-inline-block rounded-circle" style="width: 14px; height: 14px; background-color: {{ $semaphore['color'] }};"></span><br>
+                                                <small class="text-muted">{{ $semaphore['label'] }}</small>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                     @unless ($image->isSafe())
                                         <div class="alert alert-danger mt-2 text-center">
                                             ⚠️ Attenzione: questa immagine potrebbe contenere contenuti inappropriati
@@ -51,7 +59,7 @@
                 <p>{{ $article_to_check->description }}</p>
                 <p class="text-muted"><small>Inserito da {{ $article_to_check->user->name }}</small></p>
 
-               <div class="d-flex gap-2 mt-4">
+                <div class="d-flex gap-2 mt-4">
                     <form method="POST" action="{{ route('revisor.accept', $article_to_check) }}">
                         @csrf
                         @method('PATCH')

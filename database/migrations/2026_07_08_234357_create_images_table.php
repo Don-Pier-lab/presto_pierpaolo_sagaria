@@ -12,6 +12,12 @@ return new class extends Migration
             $table->id();
             $table->string('path');
             $table->foreignId('article_id')->constrained()->onDelete('cascade');
+            $table->integer('adult')->nullable();
+            $table->integer('violence')->nullable();
+            $table->integer('racy')->nullable();
+            $table->integer('spoof')->nullable();
+            $table->integer('medical')->nullable();
+            $table->text('labels')->nullable();
             $table->timestamps();
         });
     }
