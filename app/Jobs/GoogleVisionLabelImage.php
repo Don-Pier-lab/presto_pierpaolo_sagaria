@@ -32,6 +32,8 @@ class GoogleVisionLabelImage implements ShouldQueue
             return;
         }
 
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path('google_credential.json'));
+
         $imageAnnotator = new ImageAnnotatorClient();
 
         $imageContent = Storage::disk('public')->get($image->path);
