@@ -9,6 +9,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Jobs\ResizeImage;
 use Illuminate\Support\Facades\File;
+use App\Jobs\GoogleVisionSafeSearch;
+use App\Jobs\GoogleVisionLabelImage;
 
 #[Layout('components.layout')]
 class CreateArticle extends Component
@@ -69,6 +71,8 @@ class CreateArticle extends Component
                 ]);
 
                 dispatch(new ResizeImage($newImage->path, 300, 300));
+                dispatch(new GoogleVisionSafeSearch($newImage->id));
+                dispatch(new GoogleVisionLabelImage($newImage->id));
             }
 
             File::deleteDirectory(storage_path('/app/livewire-tmp'));

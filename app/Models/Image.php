@@ -8,7 +8,14 @@ use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
-    protected $fillable = ['path', 'article_id'];
+    protected $fillable = ['path', 'article_id', 'adult', 'violence', 'racy', 'spoof', 'medical', 'labels'];
+
+    protected function casts(): array
+    {
+        return [
+            'labels' => 'array',
+        ];
+    }
 
     public function article(): BelongsTo
     {
@@ -33,5 +40,14 @@ class Image extends Model
     public function getUrl($w = null, $h = null)
     {
         return self::getUrlByFilePath($this->path, $w, $h);
+    }
+
+   public function isSafe()
+    {
+        return $this->adult < 3
+            && $this->violence < 3
+            && $this->racy < 3
+            && $this->spoof < 3
+            && $this->medical < 3;
     }
 }

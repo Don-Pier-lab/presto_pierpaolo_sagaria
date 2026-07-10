@@ -14,6 +14,19 @@
                             @foreach ($article_to_check->images as $key => $image)
                                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                     <img src="{{ $image->getUrl(300, 300) }}" class="d-block w-100 rounded" alt="Immagine">
+                                    @unless ($image->isSafe())
+                                        <div class="alert alert-danger mt-2 text-center">
+                                            ⚠️ Attenzione: questa immagine potrebbe contenere contenuti inappropriati
+                                        </div>
+                                    @endunless
+                                    @if ($image->labels)
+                                        <div class="mt-2 text-center">
+                                            <small class="text-muted">Etichette rilevate:</small><br>
+                                            @foreach ($image->labels as $label)
+                                                <span class="badge bg-info text-dark">{{ $label }}</span>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
                             @endforeach
                         @else
