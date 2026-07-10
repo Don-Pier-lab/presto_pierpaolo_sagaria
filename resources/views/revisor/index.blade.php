@@ -13,7 +13,7 @@
                         @if ($article_to_check->images->count() > 0)
                             @foreach ($article_to_check->images as $key => $image)
                                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                    <img src="{{ $image->getUrl(300, 300) }}" class="d-block w-100 rounded" alt="Immagine">
+                                    <img src="{{ $image->getUrl(600, 600) }}" class="d-block w-100 rounded" alt="Immagine">
                                     @unless ($image->isSafe())
                                         <div class="alert alert-danger mt-2 text-center">
                                             ⚠️ Attenzione: questa immagine potrebbe contenere contenuti inappropriati

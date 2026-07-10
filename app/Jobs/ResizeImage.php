@@ -7,6 +7,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use Spatie\Image\Enums\CropPosition;
 use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Image;
+use Spatie\Image\Enums\Fit;
 
 class ResizeImage implements ShouldQueue
 {
@@ -35,7 +36,7 @@ class ResizeImage implements ShouldQueue
 
         Image::useImageDriver(ImageDriver::Gd)
             ->load($srcPath)
-            ->crop($w, $h, CropPosition::Center)
+            ->fit(Fit::Fill, $w, $h)
             ->save($destPath);
     }
 }

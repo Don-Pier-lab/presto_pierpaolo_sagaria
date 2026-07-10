@@ -1,8 +1,8 @@
 @props(['article'])
 
 <div class="card h-100">
-    <img src="{{ $article->images->isNotEmpty() ? $article->images->first()->getUrl(300, 300) : 'https://placehold.co/400x250?text=Nessuna+foto' }}"
-        class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ $article->title }}">
+    <img src="{{ $article->images->isNotEmpty() ? $article->images->first()->getUrl(600, 600) : 'https://placehold.co/600x600?text=Nessuna+foto' }}"
+        class="card-img-top" style="aspect-ratio: 1 / 1; object-fit: cover;" alt="{{ $article->title }}">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ $article->title }}</h5>
 
