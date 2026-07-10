@@ -37,6 +37,12 @@ class ResizeImage implements ShouldQueue
         Image::useImageDriver(ImageDriver::Gd)
             ->load($srcPath)
             ->fit(Fit::Fill, $w, $h)
+            ->watermark(
+                public_path('logo.png'),
+                width: 140,
+                paddingX: 15,
+                paddingY: 15
+            )
             ->save($destPath);
     }
 }
